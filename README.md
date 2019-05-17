@@ -45,7 +45,7 @@ Instructions are shown in the terminal. You can select to open it in:
 We've created a quick little "API server" on Google's Firebase Platform. You can get your own API up and running within minutes too:
 
 1. Signup for a Firebase account
-2. Create a new project - eg. "React Native Starter App"
+2. Create a new project - eg. "basketya"
 3. Enable email/password Authentication under the 'Sign-in method' tab.
 4. Create a Realtime Database, and import the firebase-sample-data.json file found in this repo using the hamburger menu on the top right.
 4. Get the Firebase project's API credentials, and add them to the respective variables in your /src/constants/firebase.js file. You can get your projects details from Firebase by clicking on 'Authentication' on the left, underneath 'Develop' > select 'Web setup'.
