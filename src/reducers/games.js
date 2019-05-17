@@ -1,16 +1,12 @@
-import Store from '../store/recipes';
+import Store from '../store/games';
 
+// init a store
 export const initialState = Store;
 
 export default function recipeReducer(state = initialState, action) {
   switch (action.type) {
-    case 'MEALS_REPLACE': {
-      return {
-        ...state,
-        meals: action.data,
-      };
-    }
-    case 'RECIPES_REPLACE': {
+    // this is the action type
+    case 'GAMES_REPLACE': {
       let games = [];
 
       // Pick out the props I need
@@ -22,14 +18,15 @@ export default function recipeReducer(state = initialState, action) {
           localPoints: item.localPoints,
           visitPoints: item.visitPoints,
           estadio: item.estadio,
-          ingredients: item.ingredients,
-          method: item.method,
+          date: item.date,
+          horario: item.horario,
+          status: item.status
         }));
       }
 
       return {
         ...state,
-        recipes,
+        games,
       };
     }
     default:

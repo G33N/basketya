@@ -24,9 +24,10 @@ const GameListing = ({
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id;
-
-  const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
+  // Get the item ID
+  const keyExtractor = item => item.id.toString();
+  // Find match in games a game where the ID be equal to item.id
+  const onPress = item => Actions.game({ match: { params: { id: String(item.id) } } });
 
   return (
     <Container>
@@ -54,7 +55,7 @@ const GameListing = ({
                     {item.visitName}
                     {item.localPoints}
                     {item.visitPoints}
-                    {item.estadio}
+                    {item.stadium}
                     {item.date}
                     {item.horario}
                     {item.status}

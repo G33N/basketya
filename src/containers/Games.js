@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getRecipes, getMeals } from '../actions/recipes';
+import { getGames } from '../actions/games';
 
 class GameListing extends Component {
   static propTypes = {
@@ -10,13 +10,13 @@ class GameListing extends Component {
     games: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     match: PropTypes.shape({ params: PropTypes.shape({}) }),
     fetchGames: PropTypes.func.isRequired,
-    fetchMeals: PropTypes.func.isRequired,
   }
 
+  // This prop is for get a match by example game ID equal to item ID
   static defaultProps = {
     match: null,
   }
-
+  // States to redux, this addd a spiner while getting data from firebase if fail show error
   state = {
     error: null,
     loading: false,
@@ -25,12 +25,11 @@ class GameListing extends Component {
   componentDidMount = () => this.fetchData();
 
   fetchData = (data) => {
-    const { fetchGames, fetchMeals } = this.props;
+    const { fetchGames } = this.props;
 
     this.setState({ loading: true });
 
     return fetchGames(data)
-      .then(() => fetchMeals())
       .then(() => this.setState({
         loading: false,
         error: null,
@@ -39,7 +38,7 @@ class GameListing extends Component {
         error: err,
       }));
   }
-
+  // render send data to the component through const export 
   render = () => {
     const { Layout, games, match } = this.props;
     const { loading, error } = this.state;
@@ -58,12 +57,11 @@ class GameListing extends Component {
 }
 
 const mapStateToProps = state => ({
-  games: state.recipes.recipes || {},
+  games: state.games.games || {},
 });
 
 const mapDispatchToProps = {
-  fetchMeals: getMeals,
-  fetchGames: getRecipes,
+  fetchGames: getGames,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameListing);

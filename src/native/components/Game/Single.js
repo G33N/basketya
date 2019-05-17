@@ -14,29 +14,31 @@ const GameView = ({
   // Error
   if (error) return <Error content={error} />;
 
-  // Get this Recipe from all recipes
+  // Get this Game from all recipes
   let game = null;
   if (gameId && games) {
     game = games.find(item => parseInt(item.id, 10) === parseInt(gameId, 10));
   }
 
-  // Recipe not found
-  if (!game) return <Error content={errorMessages.recipe404} />;
+  // Game not found
+  if (!game) return <Error content={errorMessages.game404} />;
 
   return (
     <Container>
       <Content padder>
-        <Image source={{ uri: game.image }} style={{ height: 100, width: null, flex: 1 }} />
-
         <Spacer size={25} />
-        <H3>{game.title}</H3>
+        <H3>{game.localName} VS {game.visitName}</H3>
         <Text>
-          by
+          Estadio
           {' '}
-          {game.author}
+          {game.stadium}
         </Text>
         <Spacer size={15} />
-
+        <Text>
+          Fecha
+          {' '}
+          {game.date} {' '} {game.time}
+        </Text>
         <Spacer size={20} />
       </Content>
     </Container>

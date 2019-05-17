@@ -1,5 +1,5 @@
-import member from './member';
-import recipes from './recipes';
+// IMPORT REDUCERS HERE
+import games from './games'
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -12,6 +12,6 @@ const rehydrated = (state = false, action) => {
 
 export default {
   rehydrated,
-  member,
-  recipes,
+  games,
+  // REDUCERS TO IMPORT YOU SHOULD ADD HERE ALL IMPORTS REDUCERS
 };

@@ -3,30 +3,14 @@ import { Scene, Tabs, Stack } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 
 import DefaultProps from '../constants/navigation';
-import AppConfig from '../../constants/config';
-
-import RecipesContainer from '../../containers/Recipes';
-import RecipeListingComponent from '../components/Recipe/Listing';
-import RecipeSingleComponent from '../components/Recipe/Single';
 
 import GamesContainer from '../../containers/Games';
 import GameListingComponent from '../components/Game/Listing';
 import GameSingleComponent from '../components/Game/Single'
 
-import SignUpContainer from '../../containers/SignUp';
-import SignUpComponent from '../components/User/SignUp';
+import FixtureComponent from '../components/Fixture/Fixture';
 
-import LoginContainer from '../../containers/Login';
-import LoginComponent from '../components/User/Login';
-
-import ForgotPasswordContainer from '../../containers/ForgotPassword';
-import ForgotPasswordComponent from '../components/User/ForgotPassword';
-
-import UpdateProfileContainer from '../../containers/UpdateProfile';
-import UpdateProfileComponent from '../components/User/UpdateProfile';
-
-import MemberContainer from '../../containers/Member';
-import ProfileComponent from '../components/User/Profile';
+import NewsComponent from '../components/News/News'
 
 const Index = (
   <Stack hideNavBar>
@@ -44,61 +28,31 @@ const Index = (
           icon={() => <Icon name="basketball" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
+          {/* THIS IS THE STACK FOR THE TAB GAMES WITH THE CONTAINER GAME AND INIT WITH A LIST OF GAMES LAYAOUT */}
           <Scene key="games" component={GamesContainer} Layout={GameListingComponent} />
         </Stack>
 
         <Stack
-          key="recipes"
-          title="RECIPES"
+          key="news"
+          title="NOTICIAS"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
+          // This inherit the navigations props to the child
           {...DefaultProps.navbarProps}
         >
-          <Scene key="recipes" component={RecipesContainer} Layout={RecipeListingComponent} />
+          <Scene key="news" component={NewsComponent}/>
         </Stack>
 
         <Stack
-          key="profile"
-          title="PROFILE"
-          icon={() => <Icon name="contact" {...DefaultProps.icons} />}
+          key="fixtures"
+          title="POSICIONES"
+          icon={() => <Icon name="list" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="profileHome" component={MemberContainer} Layout={ProfileComponent} />
-          <Scene
-            back
-            key="signUp"
-            title="SIGN UP"
-            {...DefaultProps.navbarProps}
-            component={SignUpContainer}
-            Layout={SignUpComponent}
-          />
-          <Scene
-            back
-            key="login"
-            title="LOGIN"
-            {...DefaultProps.navbarProps}
-            component={LoginContainer}
-            Layout={LoginComponent}
-          />
-          <Scene
-            back
-            key="forgotPassword"
-            title="FORGOT PASSWORD"
-            {...DefaultProps.navbarProps}
-            component={ForgotPasswordContainer}
-            Layout={ForgotPasswordComponent}
-          />
-          <Scene
-            back
-            key="updateProfile"
-            title="UPDATE PROFILE"
-            {...DefaultProps.navbarProps}
-            component={UpdateProfileContainer}
-            Layout={UpdateProfileComponent}
-          />
+          <Scene key="fixtures" component={FixtureComponent} />
         </Stack>
       </Tabs>
     </Scene>
-
+    {/* When you add a Scene here you are declaration a new Action.{key} in the redux actions*/}
     <Scene
       back
       clone
